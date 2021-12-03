@@ -114,7 +114,10 @@ public class PanakoStrategy extends Strategy {
 		int numberOfPrints = prints.size();
 		
 		db.storeMetadata((long) resourceID,resource,duration,numberOfPrints);
-		
+
+		if(Config.getBoolean(Key.PANAKO_CACHE_TO_FILE)) {
+			fileCache.storeMetadata((long) resourceID,resource,duration,numberOfPrints);
+		}		
 		//storage is done: 
 		//try to clear memory
 		System.gc();
